@@ -25,10 +25,10 @@ public class Post {
     public Post() {
     }
 
-    private Post(Long id, String title, String github_url) {
+    private Post(Long id, String title, String githubUrl) {
         this.id = id;
         this.title = title;
-        this.githubUrl = github_url;
+        this.githubUrl = githubUrl;
     }
 
     public Post(String title, String githubUrl) {
