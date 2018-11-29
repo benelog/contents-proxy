@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/blog")
+@RequestMapping("/blog/setting")
 public class BlogSettingController {
     private final BlogService blogService;
 
@@ -17,21 +17,17 @@ public class BlogSettingController {
     }
 
     @GetMapping
-    public ModelAndView getBlogSetting() {
-        ModelAndView modelAndView = new ModelAndView();
-
-        modelAndView.addObject("title", blogService.findSetting().getTitle());
-        return modelAndView;
+    public ModelAndView getGithubBlogTitle() {
+        return new ModelAndView("blogSetting")
+                .addObject("title", blogService.findGithubBlogTitle());
     }
 
     @PutMapping
-    public ModelAndView modifyBlogTitle(String newTitle) {
-        ModelAndView modelAndView = new ModelAndView();
-
+    public ModelAndView modifyGithubBlogTitle(String newTitle) {
         blogService.updateBlogName(newTitle);
 
-        modelAndView.addObject("title", blogService.findGithubBlogTitle());
-        return modelAndView;
+        return new ModelAndView("blogSetting")
+                .addObject("title", blogService.findGithubBlogTitle());
     }
 }
 
