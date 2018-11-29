@@ -8,13 +8,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 @Slf4j
-public class GithubReadmeLoaderTest {
+public class GithubMarkdownLoaderTest {
 
-    private GithubReadmeLoader loader;
+    private GithubMarkdownLoader loader;
 
     @Before
     public void setUp() throws Exception {
-        loader = new GithubReadmeLoader();
+        loader = new GithubMarkdownLoader();
     }
 
     @Test

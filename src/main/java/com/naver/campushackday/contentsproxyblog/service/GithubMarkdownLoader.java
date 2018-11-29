@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 
 @Component
 @Slf4j
-public class GithubReadmeLoader {
+public class GithubMarkdownLoader {
 
     public String fetchMarkdownFileAndConvertToString(String repositoryURL, String filePath) throws Exception {
         return convertMarkdownByteArrayToString(fetchGithubMarkdownFile(repositoryURL, filePath));
