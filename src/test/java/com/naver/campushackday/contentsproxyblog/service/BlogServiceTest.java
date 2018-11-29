@@ -16,30 +16,30 @@ import com.naver.campushackday.contentsproxyblog.persistence.BlogSettingReposito
 
 @RunWith(MockitoJUnitRunner.class)
 public class BlogServiceTest {
-    @Mock
-    BlogSettingRepository repository;
-    @InjectMocks
-    BlogService service;
+	@Mock
+	BlogSettingRepository repository;
+	@InjectMocks
+	BlogService service;
 
-    @Test
-    public void shouldFindSetting_defaultTitle() {
-        // when
-        BlogSetting setting = service.findSetting();
+	@Test
+	public void shouldFindSetting_defaultTitle() {
+		// when
+		BlogSetting setting = service.findSetting();
 
-        // then
-        assertThat(setting.getTitle()).isEqualTo("제목 없는 블로그");
-    }
+		// then
+		assertThat(setting.getTitle()).isEqualTo("제목 없는 블로그");
+	}
 
-    @Test
-    public void shouldFindSetting() {
-        // given
-        var title = "핵데이";
-        given(repository.findAll()).willReturn(List.of(new BlogSetting(title)));
+	@Test
+	public void shouldFindSetting() {
+		// given
+		var title = "핵데이";
+		given(repository.findAll()).willReturn(List.of(new BlogSetting(title)));
 
-        // when
-        BlogSetting setting = service.findSetting();
+		// when
+		BlogSetting setting = service.findSetting();
 
-        // then
-        assertThat(setting.getTitle()).isEqualTo(title);
-    }
+		// then
+		assertThat(setting.getTitle()).isEqualTo(title);
+	}
 }

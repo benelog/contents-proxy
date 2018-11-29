@@ -7,15 +7,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MarkdownParserTest {
 
-    private MarkdownParser markdown;
+	private MarkdownParser markdown;
 
-    @Before
-    public void setUp() {
-        markdown = new MarkdownParser();
-    }
+	@Before
+	public void setUp() {
+		markdown = new MarkdownParser();
+	}
 
-    @Test
-    public void renderMarkdownTextToHtmlTest() {
-        assertThat(markdown.renderMarkdownTextToHtml("This is *Sparta*")).isEqualTo("<p>This is <em>Sparta</em></p>\n");
-    }
+	@Test
+	public void renderMarkdownTextToHtmlTest() {
+		assertThat(markdown.renderMarkdownTextToHtml("This is *Sparta*")).isEqualTo("<p>This is <em>Sparta</em></p>\n");
+	}
 }

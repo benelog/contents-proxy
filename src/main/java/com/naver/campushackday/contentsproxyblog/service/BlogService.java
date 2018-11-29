@@ -9,6 +9,9 @@ import com.naver.campushackday.contentsproxyblog.persistence.BlogSettingReposito
 
 @Service
 public class BlogService {
+
+	private static final Long GITHUB_BLOG_ID = 1L;
+
 	private final BlogSettingRepository repository;
 
 	public BlogService(BlogSettingRepository repository) {
@@ -24,5 +27,18 @@ public class BlogService {
 		var setting = new BlogSetting();
 		setting.setTitle("제목 없는 블로그");
 		return setting;
+	}
+
+	public String findGithubBlogTitle() {
+		return repository.findTitleById(GITHUB_BLOG_ID);
+	}
+
+	public void updateBlogName(String newTitle) {
+		BlogSetting setting = new BlogSetting();
+
+		setting.setTitle(newTitle);
+		setting.setId(GITHUB_BLOG_ID);
+
+		repository.save(setting);
 	}
 }

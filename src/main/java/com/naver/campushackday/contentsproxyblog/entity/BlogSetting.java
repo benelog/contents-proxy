@@ -16,14 +16,14 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogSetting {
-    @Id
-    @GeneratedValue
-    private Long id;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-    @Column
-    private String title;
+	@Column
+	private String title;
 
-    public BlogSetting(String title){
-        this.title = title;
-    }
+	public BlogSetting(String title) {
+		this.title = title;
+	}
 }

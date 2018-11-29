@@ -10,24 +10,24 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/blog/setting")
 public class BlogSettingController {
-    private final BlogService blogService;
+	private final BlogService blogService;
 
-    public BlogSettingController(BlogService blogService) {
-        this.blogService = blogService;
-    }
+	public BlogSettingController(BlogService blogService) {
+		this.blogService = blogService;
+	}
 
-    @GetMapping
-    public ModelAndView getGithubBlogTitle() {
-        return new ModelAndView("blogSetting")
-                .addObject("title", blogService.findGithubBlogTitle());
-    }
+	@GetMapping
+	public ModelAndView getGithubBlogTitle() {
+		return new ModelAndView("blogSetting")
+				.addObject("title", blogService.findGithubBlogTitle());
+	}
 
-    @PutMapping
-    public ModelAndView modifyGithubBlogTitle(String newTitle) {
-        blogService.updateBlogName(newTitle);
+	@PutMapping
+	public ModelAndView modifyGithubBlogTitle(String newTitle) {
+		blogService.updateBlogName(newTitle);
 
-        return new ModelAndView("blogSetting")
-                .addObject("title", blogService.findGithubBlogTitle());
-    }
+		return new ModelAndView("blogSetting")
+				.addObject("title", blogService.findGithubBlogTitle());
+	}
 }
 
