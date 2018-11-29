@@ -20,8 +20,8 @@ public class Post {
     @Column(name = "TITLE")
     private String title;
 
-    @Column(name = "GITHUB_URL")
-    private String githubUrl;
+    @Column(name = "URL")
+    private String url;
 
     @Transient
     private String content;
