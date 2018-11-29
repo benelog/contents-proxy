@@ -23,4 +23,9 @@ public class Account {
 
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
+
+    public static Account giveUserRole(Account account) {
+        account.userRole = UserRole.USER;
+        return account;
+    }
 }
