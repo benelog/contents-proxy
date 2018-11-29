@@ -9,28 +9,30 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class Post {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name ="TITLE")
+    @Column(name = "TITLE")
     private String title;
 
-    @Column(name ="GITHUB_URL")
+    @Column(name = "GITHUB_URL")
     private String githubUrl;
 
     @Transient
     private String content;
 
-    public Post(){}
-
-    private Post(Long id, String title, String github_url){
-        this.id = id;
-        this.title = title;
-        this.githubUrl= github_url;
+    public Post() {
     }
 
-    public Post(String title, String github_url){
-        this(0L, title, github_url);
+    private Post(Long id, String title, String github_url) {
+        this.id = id;
+        this.title = title;
+        this.githubUrl = github_url;
+    }
+
+    public Post(String title, String githubUrl) {
+        this(0L, title, githubUrl);
     }
 
 
