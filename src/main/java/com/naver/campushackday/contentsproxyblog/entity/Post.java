@@ -1,6 +1,8 @@
 package com.naver.campushackday.contentsproxyblog.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,6 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,19 +25,4 @@ public class Post {
 
     @Transient
     private String content;
-
-    public Post() {
-    }
-
-    private Post(Long id, String title, String githubUrl) {
-        this.id = id;
-        this.title = title;
-        this.githubUrl = githubUrl;
-    }
-
-    public Post(String title, String githubUrl) {
-        this(0L, title, githubUrl);
-    }
-
-
 }
