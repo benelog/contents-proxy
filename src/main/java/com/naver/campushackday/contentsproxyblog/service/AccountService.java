@@ -15,7 +15,6 @@ public class AccountService {
     }
 
     public Account register(Account account) {
-
-        return repository.save(Account.giveUserRole(account));
+        return repository.save(new Account(account.getUserId(), account.getPassword()));
     }
 }

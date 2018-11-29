@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 
@@ -24,8 +25,15 @@ public class Account {
     @Enumerated(value = EnumType.STRING)
     private UserRole userRole;
 
-    public static Account giveUserRole(Account account) {
-        account.userRole = UserRole.USER;
-        return account;
+    public Account(String userId, String password){
+        this.userId = userId;
+        this.password = encryptPassword(password);
+        this.userRole = UserRole.USER;
     }
+
+    private String encryptPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        return encoder.encode(password);
+    }
+
 }
