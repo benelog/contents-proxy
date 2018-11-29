@@ -25,5 +25,4 @@ public class BlogService {
 		setting.setTitle("제목 없는 블로그");
 		return setting;
 	}
-
 }
