@@ -8,21 +8,20 @@ import org.springframework.orm.jpa.persistenceunit.MutablePersistenceUnitInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Markdown {
+public class MarkdownParser {
 
     private MutableDataSet options;
     private Parser parser;
+    private HtmlRenderer renderer;
 
-    public Markdown() {
+    public MarkdownParser() {
         options = new MutableDataSet();
         parser = Parser.builder(options).build();
+        renderer = HtmlRenderer.builder(options).build();
     }
 
     public String renderMarkdownTextToHtml(String markdownText) {
-        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
-
         Node document = parser.parse(markdownText);
-        String html = renderer.render(document);  // "<p>This is <em>HackDay</em></p>\n"
-        return html;
+        return renderer.render(document);  // "<p>This is <em>HackDay</em></p>\n"
     }
 }
