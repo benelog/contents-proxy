@@ -17,16 +17,15 @@
 
 ## 코딩 컨벤션
 - 모든 소스, 텍스트 문서 파일의 인코딩은 UTF-8로 통일한다.
-- 새줄 문자는 LF로 한다.
+- 새줄 문자는 LF(\n)로 한다.
 
 ### .java 파일
 - 탭(tab) 문자를 사용하여 들여쓴다. 탭 대신 스페이스를 사용하지 않는다.
+- 일반적인 Java의 컨벤션을 바탕으로 한다.
+![java-convention](http://pds21.egloos.com/pds/201508/13/79/a0274579_55cbfda73d78d.gif)
 
-### IDE 설정
+### IDE 설정 & 팁
 IntelliJ를 기준으로 아래와 같이 설정한다.
-
-#### 핸들바 템플릿 수정
-- 수정 후 `Ctrl + F9`를 눌러야 서버를 띄운 상태에서 재시작없이 바로 반영된다.
 
 #### Line separator 설정
 - `File` > `Settings` > `Editor` > `Code Style` 메뉴로 이동한다.
@@ -36,5 +35,9 @@ IntelliJ를 기준으로 아래와 같이 설정한다.
 #### 탭설정
 - `File` > `Settings` > `Editor` > `Code Style` > `Java` 메뉴로 이동한다.
 - `Tabs and Indents` 탭에서
-	- `Use tab charactor` : 선택
+	- `Use tab charactor` : 체크
 	- `Tab size` : 4
+
+#### 핸들바 템플릿 수정
+- 수정 후 `Ctrl + F9`를 눌러야 서버를 띄운 상태에서 재시작없이 바로 반영된다.
+
