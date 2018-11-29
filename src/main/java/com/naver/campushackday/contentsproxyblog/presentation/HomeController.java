@@ -29,5 +29,4 @@ public class HomeController {
 				.addObject("setting", setting)
 				.addObject("posts", posts);
 	}
-
 }

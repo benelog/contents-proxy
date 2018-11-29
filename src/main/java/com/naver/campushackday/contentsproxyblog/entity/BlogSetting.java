@@ -1,35 +1,29 @@
 package com.naver.campushackday.contentsproxyblog.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class BlogSetting {
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
+
+	@Column
 	private String title;
 
-	public BlogSetting() {
-	}
-
 	public BlogSetting(String title) {
-		this.title = title;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
 		this.title = title;
 	}
 }

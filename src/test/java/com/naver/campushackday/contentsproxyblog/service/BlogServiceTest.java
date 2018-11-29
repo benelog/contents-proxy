@@ -42,5 +42,4 @@ public class BlogServiceTest {
 		// then
 		assertThat(setting.getTitle()).isEqualTo(title);
 	}
-
 }

@@ -13,16 +13,16 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(name = "TITLE")
-    private String title;
+	@Column(name = "TITLE")
+	private String title;
 
-    @Column(name = "URL")
-    private String url;
+	@Column(name = "URL")
+	private String url;
 
-    @Transient
-    private String content;
+	@Transient
+	private String content;
 }
