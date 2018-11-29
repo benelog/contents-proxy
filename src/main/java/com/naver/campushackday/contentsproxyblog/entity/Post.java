@@ -16,14 +16,17 @@ public class Post {
     private String title;
 
     @Column(name ="GITHUB_URL")
-    private String github_url;
+    private String githubUrl;
+
+    @Transient
+    private String content;
 
     public Post(){}
 
     private Post(Long id, String title, String github_url){
         this.id = id;
         this.title = title;
-        this.github_url= github_url;
+        this.githubUrl= github_url;
     }
 
     public Post(String title, String github_url){
