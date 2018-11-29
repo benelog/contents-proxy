@@ -38,6 +38,12 @@ IntelliJ를 기준으로 아래와 같이 설정한다.
 	- `Use tab charactor` : 체크
 	- `Tab size` : 4
 
+#### 화이트 스페이스 보이게 하기
+탭과 스페이스를 IDE 안에서 쉽게 구분이 가능하도록 설정한다.
+
+- `File` > `Settings` > `Editor` > `General` > `Appearance` 메뉴로 이동한다.
+- `Show whitespaces`를 선택한다. 하위 분류에서 `Leading, Inner`,`Trailing`를 모두 선택한다.
+
 #### 핸들바 템플릿 수정
 - 수정 후 `Ctrl + F9`를 눌러야 서버를 띄운 상태에서 재시작없이 바로 반영된다.
 
