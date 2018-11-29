@@ -30,7 +30,7 @@ public class PostService {
 
 	public Post findPost(long id) throws Exception {
 		Post post = findOne(id);
-		String[] urlElements = StringParser.parseUrl(post.getUrl());
+		String[] urlElements = StringParser.parseGithubUrl(post.getUrl());
 		String repoUrl = urlElements[0];
 		String filePath = urlElements[1];
 		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
