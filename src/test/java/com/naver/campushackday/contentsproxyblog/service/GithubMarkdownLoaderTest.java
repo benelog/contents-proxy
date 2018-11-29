@@ -1,5 +1,6 @@
 package com.naver.campushackday.contentsproxyblog.service;
 
+import com.naver.campushackday.contentsproxyblog.component.GithubMarkdownLoader;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;

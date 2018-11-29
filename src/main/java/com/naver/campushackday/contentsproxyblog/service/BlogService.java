@@ -10,7 +10,8 @@ import com.naver.campushackday.contentsproxyblog.persistence.BlogSettingReposito
 @Service
 public class BlogService {
 	private final BlogSettingRepository repository;
-	public BlogService(BlogSettingRepository repository){
+
+	public BlogService(BlogSettingRepository repository) {
 		this.repository = repository;
 	}
 
@@ -24,4 +25,5 @@ public class BlogService {
 		setting.setTitle("제목 없는 블로그");
 		return setting;
 	}
+
 }

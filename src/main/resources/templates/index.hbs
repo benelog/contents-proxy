@@ -6,5 +6,21 @@
 </head>
 <body>
   <h1>{{setting.title}}</h1>
+
+	<a href="/post/form">새 포스트</a>
+
+	<table id="post_table" border="1">
+		<tr>
+			<th>제목</th>
+			<th>url</th>
+		</tr>
+		{{#each posts}}
+			<tr>
+				<td><a href="/post/{{id}}">{{title}}</a></td>
+				<td>{{url}}</td>
+			</tr>
+		{{/each}}
+	</table>
+
 </body>
 </html>
