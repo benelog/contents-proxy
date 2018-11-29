@@ -7,6 +7,7 @@ import com.naver.campushackday.contentsproxyblog.exception.NoSuchPostException;
 import com.naver.campushackday.contentsproxyblog.persistence.PostRepository;
 import com.naver.campushackday.contentsproxyblog.util.StringParser;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,13 +24,15 @@ public class PostService {
 		this.markdownParser = markdownParser;
 	}
 
-	public Post findOne(long id) {
+	private Post findOne(long id) {
 		return postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("id 에 해당하는 post가 없습니다."));
-
 	}
 
 	public Post findPost(long id) throws Exception {
 		Post post = findOne(id);
+
+		updateViewCount(post);
+
 		String[] urlElements = StringParser.parseGithubUrl(post.getUrl());
 		String repoUrl = urlElements[0];
 		String filePath = urlElements[1];
@@ -43,8 +46,16 @@ public class PostService {
 		return postRepository.findAll();
 	}
 
+	@Transactional
 	public long save(Post post) {
 		return postRepository.save(post).getId();
+	}
+
+	@Transactional
+	public void updateViewCount(Post post) {
+		long updatedViewCount = post.getViewCount() + 1;
+		post.setViewCount(updatedViewCount);
+		postRepository.save(post);
 	}
 
 }

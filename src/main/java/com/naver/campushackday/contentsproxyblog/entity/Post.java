@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -25,4 +26,7 @@ public class Post {
 
 	@Transient
 	private String content;
+
+	@Column(name = "VIEW_COUNT")
+	private Long viewCount = 0L;
 }
