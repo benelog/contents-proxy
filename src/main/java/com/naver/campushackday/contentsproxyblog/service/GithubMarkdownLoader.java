@@ -13,11 +13,7 @@ import java.nio.charset.StandardCharsets;
 @Slf4j
 public class GithubMarkdownLoader {
 
-    private ContentsService contentsService;
-
-    public GithubMarkdownLoader(){
-        contentsService = new ContentsService();
-    }
+    private ContentsService contentsService = new ContentsService();
 
     public String fetchMarkdownFileAndConvertToString(String repositoryURL, String filePath) throws Exception {
         return convertMarkdownByteArrayToString(fetchGithubMarkdownFile(repositoryURL, filePath));
