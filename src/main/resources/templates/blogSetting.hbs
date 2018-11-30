@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>블로그 설정</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<h1>{{setting.title}}</h1>
+
+<a href="/">메인화면</a>
+
+<form action="/blog/setting" method="post" name="post">
+	블로그 새 이름: <input type="text" name="newTitle" value="title" required>
+	<input type="hidden" name="_method" value="put" />
+	<input type="submit">
+</form>
+
+</body>
+</html>
