@@ -2,6 +2,7 @@ package com.naver.campushackday.contentsproxyblog.service;
 
 import com.naver.campushackday.contentsproxyblog.component.GithubMarkdownLoader;
 import com.naver.campushackday.contentsproxyblog.component.MarkdownParser;
+import com.naver.campushackday.contentsproxyblog.entity.ImageType;
 import com.naver.campushackday.contentsproxyblog.entity.Post;
 import com.naver.campushackday.contentsproxyblog.exception.NoSuchPostException;
 import com.naver.campushackday.contentsproxyblog.persistence.PostRepository;
@@ -73,7 +74,7 @@ public class PostService {
 	private String convertImagePath(String repoUrl, String markdownText, String imageUrl) {
 		if (isImage(imageUrl)) {
 			if (checkAbsolutePath(imageUrl)) {
-				markdownText = markdownText.replace(imageUrl, repoUrl + "/master" + imageUrl);
+				markdownText = markdownText.replace(imageUrl, repoUrl + "/raw/master" + imageUrl);
 			}
 		}
 		return markdownText;
@@ -84,6 +85,6 @@ public class PostService {
 	}
 
 	private boolean isImage(String imageUrl) {
-		return imageUrl.contains("png") || imageUrl.contains("jpeg") || imageUrl.contains("jpg");
+		return imageUrl.contains(ImageType.PNG.toString()) || imageUrl.contains(ImageType.JPEG.toString()) || imageUrl.contains(ImageType.JPG.toString());
 	}
 }
