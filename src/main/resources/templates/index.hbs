@@ -13,13 +13,11 @@
 <table id="post_table" border="1">
 		<tr>
 			<th>제목</th>
-			<th>url</th>
 			<th>조회수</th>
 		</tr>
 		{{#each posts}}
 			<tr>
 				<td><a href="/post/{{id}}">{{title}}</a></td>
-				<td>{{url}}</td>
 				<td>{{viewCount}}</td>
 			</tr>
 		{{/each}}
