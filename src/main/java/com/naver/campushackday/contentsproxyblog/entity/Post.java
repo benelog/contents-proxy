@@ -25,4 +25,7 @@ public class Post {
 
 	@Transient
 	private String content;
+
+	@Column(name = "VIEW_COUNT")
+	private Long viewCount = 0L;
 }

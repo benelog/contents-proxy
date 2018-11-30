@@ -31,6 +31,6 @@ public class PostController {
 
 	@PostMapping("/post")
 	public String addPost(Post post) {
-		return "redirect:post/" + postService.save(post);
+		return "redirect:post/" + postService.savePost(post);
 	}
 }

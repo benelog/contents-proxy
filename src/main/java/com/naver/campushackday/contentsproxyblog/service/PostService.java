@@ -7,6 +7,7 @@ import com.naver.campushackday.contentsproxyblog.exception.NoSuchPostException;
 import com.naver.campushackday.contentsproxyblog.persistence.PostRepository;
 import com.naver.campushackday.contentsproxyblog.util.StringParser;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,28 +24,42 @@ public class PostService {
 		this.markdownParser = markdownParser;
 	}
 
-	public Post findOne(long id) {
+	private Post findOne(long id) {
 		return postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("id 에 해당하는 post가 없습니다."));
-
 	}
 
+	@Transactional
 	public Post findPost(long id) throws Exception {
 		Post post = findOne(id);
-		String[] urlElements = StringParser.parseGithubUrl(post.getUrl());
+
+		updateViewCount(post);
+		post.setContent(getContentByUrl(post.getUrl()));
+
+		return post;
+	}
+
+	public List<Post> findSortedPostsByViewCount() {
+		List<Post> posts = postRepository.findAll();
+		posts.sort((p1, p2) -> p2.getViewCount().compareTo(p1.getViewCount()));
+		return posts;
+	}
+
+	public long savePost(Post post) {
+		return postRepository.save(post).getId();
+	}
+
+	private void updateViewCount(Post post) {
+		long updatedViewCount = post.getViewCount() + 1;
+		post.setViewCount(updatedViewCount);
+	}
+
+	private String getContentByUrl(String url) throws Exception {
+		String[] urlElements = StringParser.parseGithubUrl(url);
 		String repoUrl = urlElements[0];
 		String filePath = urlElements[1];
 		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
 		String markdownHtml = markdownParser.renderMarkdownTextToHtml(markdownText);
-		post.setContent(markdownHtml);
-		return post;
-	}
-
-	public List<Post> findPosts() {
-		return postRepository.findAll();
-	}
-
-	public long save(Post post) {
-		return postRepository.save(post).getId();
+		return markdownHtml;
 	}
 
 }
