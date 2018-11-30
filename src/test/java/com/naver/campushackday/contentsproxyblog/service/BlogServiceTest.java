@@ -16,6 +16,7 @@ import com.naver.campushackday.contentsproxyblog.persistence.BlogSettingReposito
 
 @RunWith(MockitoJUnitRunner.class)
 public class BlogServiceTest {
+
 	@Mock
 	BlogSettingRepository repository;
 	@InjectMocks

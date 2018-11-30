@@ -13,6 +13,7 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+
 	private final BlogService blogService;
 	private final PostService postService;
 

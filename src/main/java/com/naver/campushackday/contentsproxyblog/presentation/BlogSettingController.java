@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/blog/setting")
 public class BlogSettingController {
+
 	private final BlogService blogService;
 
 	public BlogSettingController(BlogService blogService) {

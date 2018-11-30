@@ -16,6 +16,7 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BlogSetting {
+
 	@Id
 	@GeneratedValue
 	private Long id;
