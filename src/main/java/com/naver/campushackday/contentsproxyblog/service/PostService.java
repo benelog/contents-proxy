@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class PostService {
+
 	private static final String NO_SUCH_POST_EXCEPTION_MESSAGE = "id 에 해당하는 post가 없습니다.";
 
 	private final PostRepository postRepository;
