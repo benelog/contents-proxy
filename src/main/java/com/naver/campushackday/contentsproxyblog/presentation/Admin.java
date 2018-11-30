@@ -1,6 +1,6 @@
 package com.naver.campushackday.contentsproxyblog.presentation;
 
-import lombok.AllArgsConstructor;
+		import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class Admin {

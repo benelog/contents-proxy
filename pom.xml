@@ -66,6 +66,11 @@
 			<artifactId>flexmark-all</artifactId>
 			<version>0.34.48</version>
 		</dependency>
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
