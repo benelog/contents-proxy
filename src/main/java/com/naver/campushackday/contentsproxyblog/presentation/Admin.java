@@ -6,4 +6,5 @@ import lombok.AllArgsConstructor;
 public class Admin {
 
 	private String name;
+
 }
