@@ -15,7 +15,9 @@ import java.util.List;
 @Service
 public class PostService {
 
-	private static final String NO_SUCH_POST_EXCEPTION_MESSAGE = "id 에 해당하는 post가 없습니다.";
+	private static final String NO_SUCH_POST_EXCEPTION_MESSAGE = "ID 에 해당하는 POST가 없습니다.";
+	private static final String ABSOLUTE_PATH_CHECKER = "http";
+	private static final String IMAGE_URL_ELEMENT = "/raw/master";
 
 	private final PostRepository postRepository;
 	private final GithubMarkdownLoader githubMarkdownLoader;
@@ -42,7 +44,8 @@ public class PostService {
 
 	public List<Post> findSortedPostsByViewCount() {
 		List<Post> posts = postRepository.findAll();
-		posts.sort((p1, p2) -> p2.getViewCount().compareTo(p1.getViewCount()));
+
+		posts.sort((post1, post2) -> post2.getViewCount().compareTo(post1.getViewCount()));
 		return posts;
 	}
 
@@ -51,8 +54,7 @@ public class PostService {
 	}
 
 	private void updateViewCount(Post post) {
-		long updatedViewCount = post.getViewCount() + 1;
-		post.setViewCount(updatedViewCount);
+		post.setViewCount(post.getViewCount() + 1);
 	}
 
 	private String getContentByUrl(String url) throws Exception {
@@ -60,8 +62,7 @@ public class PostService {
 		String repoUrl = urlElements[0];
 		String filePath = urlElements[1];
 		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
-		String markdownHtml = markdownParser.renderMarkdownTextToHtml(iterateImageUrls(repoUrl, markdownText));
-		return markdownHtml;
+		return markdownParser.renderMarkdownTextToHtml(iterateImageUrls(repoUrl, markdownText));
 	}
 
 	private String iterateImageUrls(String repoUrl, String markdownText) {
@@ -73,15 +74,15 @@ public class PostService {
 
 	private String convertImagePath(String repoUrl, String markdownText, String imageUrl) {
 		if (isImage(imageUrl)) {
-			if (checkAbsolutePath(imageUrl)) {
-				markdownText = markdownText.replace(imageUrl, repoUrl + "/raw/master" + imageUrl);
+			if (isRelativePath(imageUrl)) {
+				markdownText = markdownText.replace(imageUrl, repoUrl + IMAGE_URL_ELEMENT + imageUrl);
 			}
 		}
 		return markdownText;
 	}
 
-	private boolean checkAbsolutePath(String imageUrl) {
-		return !imageUrl.contains("http");
+	private boolean isRelativePath(String imageUrl) {
+		return !imageUrl.contains(ABSOLUTE_PATH_CHECKER);
 	}
 
 	private boolean isImage(String imageUrl) {
