@@ -28,6 +28,7 @@ public class PostService {
 		return postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("id 에 해당하는 post가 없습니다."));
 	}
 
+	@Transactional
 	public Post findPost(long id) throws Exception {
 		Post post = findOne(id);
 
@@ -39,23 +40,23 @@ public class PostService {
 		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
 		String markdownHtml = markdownParser.renderMarkdownTextToHtml(markdownText);
 		post.setContent(markdownHtml);
+
 		return post;
 	}
 
-	public List<Post> findPosts() {
-		return postRepository.findAll();
+	public List<Post> findSortedPostsByViewCount() {
+		List<Post> posts = postRepository.findAll();
+		posts.sort((p1, p2) -> p2.getViewCount().compareTo(p1.getViewCount()));
+		return posts;
 	}
 
-	@Transactional
-	public long save(Post post) {
+	public long post(Post post) {
 		return postRepository.save(post).getId();
 	}
 
-	@Transactional
-	public void updateViewCount(Post post) {
+	private void updateViewCount(Post post) {
 		long updatedViewCount = post.getViewCount() + 1;
 		post.setViewCount(updatedViewCount);
-		postRepository.save(post);
 	}
 
 }

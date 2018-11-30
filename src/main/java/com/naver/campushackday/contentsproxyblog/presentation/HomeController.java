@@ -24,7 +24,7 @@ public class HomeController {
 	@GetMapping("/")
 	public ModelAndView home() {
 		BlogSetting setting = blogService.findSetting();
-		List<Post> posts = postService.findPosts();
+		List<Post> posts = postService.findSortedPostsByViewCount();
 		return new ModelAndView("index")
 				.addObject("setting", setting)
 				.addObject("posts", posts);
