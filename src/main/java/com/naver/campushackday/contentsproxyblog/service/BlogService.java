@@ -20,6 +20,7 @@ public class BlogService {
 
 	public BlogSetting findSetting() {
 		List<BlogSetting> settings = repository.findAll();
+
 		if (settings != null && !settings.isEmpty()) {
 			return settings.get(0);
 		}

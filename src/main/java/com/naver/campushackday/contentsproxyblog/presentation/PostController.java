@@ -25,6 +25,7 @@ public class PostController {
 	@GetMapping("/post/{postId}")
 	public ModelAndView post(@PathVariable long postId) throws Exception {
 		Post post = postService.findPost(postId);
+
 		return new ModelAndView("post")
 				.addObject("post", post);
 	}
