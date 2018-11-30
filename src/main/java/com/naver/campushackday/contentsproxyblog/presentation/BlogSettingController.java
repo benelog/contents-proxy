@@ -17,17 +17,16 @@ public class BlogSettingController {
 	}
 
 	@GetMapping
-	public ModelAndView getGithubBlogTitle() {
+	public ModelAndView getBlogSetting() {
 		return new ModelAndView("blogSetting")
-				.addObject("title", blogService.findGithubBlogTitle());
+				.addObject("setting", blogService.findSetting());
 	}
 
 	@PutMapping
-	public ModelAndView modifyGithubBlogTitle(String newTitle) {
+	public String modifyGithubBlogTitle(String newTitle) {
 		blogService.updateBlogName(newTitle);
 
-		return new ModelAndView("blogSetting")
-				.addObject("title", blogService.findGithubBlogTitle());
+		return "redirect:/";
 	}
 }
 
