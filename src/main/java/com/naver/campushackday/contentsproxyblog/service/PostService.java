@@ -33,13 +33,7 @@ public class PostService {
 		Post post = findOne(id);
 
 		updateViewCount(post);
-
-		String[] urlElements = StringParser.parseGithubUrl(post.getUrl());
-		String repoUrl = urlElements[0];
-		String filePath = urlElements[1];
-		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
-		String markdownHtml = markdownParser.renderMarkdownTextToHtml(markdownText);
-		post.setContent(markdownHtml);
+		post.setContent(getContentByUrl(post.getUrl()));
 
 		return post;
 	}
@@ -50,13 +44,22 @@ public class PostService {
 		return posts;
 	}
 
-	public long post(Post post) {
+	public long savePost(Post post) {
 		return postRepository.save(post).getId();
 	}
 
 	private void updateViewCount(Post post) {
 		long updatedViewCount = post.getViewCount() + 1;
 		post.setViewCount(updatedViewCount);
+	}
+
+	private String getContentByUrl(String url) throws Exception {
+		String[] urlElements = StringParser.parseGithubUrl(url);
+		String repoUrl = urlElements[0];
+		String filePath = urlElements[1];
+		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
+		String markdownHtml = markdownParser.renderMarkdownTextToHtml(markdownText);
+		return markdownHtml;
 	}
 
 }
