@@ -12,26 +12,26 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private String adminId;
-    private String adminPassword;
+	private String adminId;
+	private String adminPassword;
 
-    public AdminController(@Value("${admin.id}") String adminId, @Value("${admin.password}") String adminPassword) {
-        this.adminId = adminId;
-        this.adminPassword = adminPassword;
-    }
+	public AdminController(@Value("${admin.id}") String adminId, @Value("${admin.password}") String adminPassword) {
+		this.adminId = adminId;
+		this.adminPassword = adminPassword;
+	}
 
-    @GetMapping("/loginForm")
-    public String loginForm() {
-        return "/admin/login";
-    }
+	@GetMapping("/loginForm")
+	public String loginForm() {
+		return "/admin/login";
+	}
 
-    @PostMapping("/login")
-    public String login(String userId, String password, HttpSession session) {
-        if (userId.equals(adminId) && password.equals(adminPassword)) {
-            session.setAttribute("admin", new Admin("관리자"));
-            return "redirect:/post/form";
-        }
-        return "redirect:/";
-    }
+	@PostMapping("/login")
+	public String login(String userId, String password, HttpSession session) {
+		if (userId.equals(adminId) && password.equals(adminPassword)) {
+			session.setAttribute("admin", new Admin("관리자"));
+			return "redirect:/post/form";
+		}
+		return "redirect:/";
+	}
 
 }
