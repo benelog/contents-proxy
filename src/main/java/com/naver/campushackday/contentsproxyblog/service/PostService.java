@@ -13,6 +13,7 @@ import java.util.List;
 
 @Service
 public class PostService {
+	private static final String NO_SUCH_POST_EXCEPTION_MESSAGE = "id 에 해당하는 post가 없습니다.";
 
 	private final PostRepository postRepository;
 	private final GithubMarkdownLoader githubMarkdownLoader;
@@ -25,7 +26,7 @@ public class PostService {
 	}
 
 	private Post findOne(long id) {
-		return postRepository.findById(id).orElseThrow(() -> new NoSuchPostException("id 에 해당하는 post가 없습니다."));
+		return postRepository.findById(id).orElseThrow(() -> new NoSuchPostException(NO_SUCH_POST_EXCEPTION_MESSAGE));
 	}
 
 	@Transactional
@@ -34,7 +35,6 @@ public class PostService {
 
 		updateViewCount(post);
 		post.setContent(getContentByUrl(post.getUrl()));
-
 		return post;
 	}
 
@@ -58,8 +58,31 @@ public class PostService {
 		String repoUrl = urlElements[0];
 		String filePath = urlElements[1];
 		String markdownText = githubMarkdownLoader.fetchMarkdownFileAndConvertToString(repoUrl, filePath);
-		String markdownHtml = markdownParser.renderMarkdownTextToHtml(markdownText);
+		String markdownHtml = markdownParser.renderMarkdownTextToHtml(iterateImageUrls(repoUrl, markdownText));
 		return markdownHtml;
 	}
 
+	private String iterateImageUrls(String repoUrl, String markdownText) {
+		for (String imageUrl : StringParser.parseMarkdownImageUrl(markdownText)) {
+			markdownText = convertImagePath(repoUrl, markdownText, imageUrl);
+		}
+		return markdownText;
+	}
+
+	private String convertImagePath(String repoUrl, String markdownText, String imageUrl) {
+		if (isImage(imageUrl)) {
+			if (checkAbsolutePath(imageUrl)) {
+				markdownText = markdownText.replace(imageUrl, repoUrl + "/master" + imageUrl);
+			}
+		}
+		return markdownText;
+	}
+
+	private boolean checkAbsolutePath(String imageUrl) {
+		return !imageUrl.contains("http");
+	}
+
+	private boolean isImage(String imageUrl) {
+		return imageUrl.contains("png") || imageUrl.contains("jpeg") || imageUrl.contains("jpg");
+	}
 }
