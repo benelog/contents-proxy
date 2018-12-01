@@ -57,3 +57,45 @@ IntelliJ를 기준으로 아래와 같이 설정한다.
 	- 문서화 : `doc:`
 	- 리팩토링 : `refactor:`
 
+## 결과
+#### 메인
+post 목록이 나오며, 각 post 별로 제목과 조회수를 확인할 수 있습니다.
+
+##### 링크
+- 블로그 설정: 블로그 설정 페이지로 전환
+- 새 포스트: post 추가 페이지로 전환
+
+<img width="193" alt="2018-11-30 2 26 27" src="https://user-images.githubusercontent.com/19392136/49270288-f31ab980-f4ab-11e8-9cdb-3cb4142ea77c.png">
+
+#### post 추가
+post 를 추가합니다. title, github url 을 입력합니다. 
+
+단, github url 은 master branch 에 한정합니다.
+
+#### post 상세
+post 제목, 조회수, 내용(github 으로부터 가져온 내용) 을 확인할 수 있습니다.
+
+##### 링크
+- 메인화면: 메인화면으로 전환
+
+<img width="800" alt="2018-11-30 2 24 24" src="https://user-images.githubusercontent.com/19392136/49270155-ab942d80-f4ab-11e8-84d2-0b18e4fac9c5.png">
+
+#### 블로그 설정
+블로그의 제목을 수정합니다.
+
+
+
+### Sequence Diagram
+```mermaid
+sequenceDiagram
+	note right of Client: 관리자 권한 확인
+	Client->Server: post 요청(title, github url 입력)
+	Server->DB: title, github url 저장
+	Server->Github: github 에 위치한 content(markdown 형식) 요청
+	Github-->Server: content 수집
+	note right of Server: 조회수 업데이트<br> content 파싱<br> md를 html 로 변환<br> 이미지 링크 수정
+	Server-->Client: post 응답(title, content)
+	
+
+
+```
