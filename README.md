@@ -86,16 +86,4 @@ post 제목, 조회수, 내용(github 으로부터 가져온 내용) 을 확인�
 
 
 ### Sequence Diagram
-```mermaid
-sequenceDiagram
-	note right of Client: 관리자 권한 확인
-	Client->Server: post 요청(title, github url 입력)
-	Server->DB: title, github url 저장
-	Server->Github: github 에 위치한 content(markdown 형식) 요청
-	Github-->Server: content 수집
-	note right of Server: 조회수 업데이트<br> content 파싱<br> md를 html 로 변환<br> 이미지 링크 수정
-	Server-->Client: post 응답(title, content)
-	
-
-
-```
+<img width="758" alt="2018-12-01 4 36 44" src="https://user-images.githubusercontent.com/19392136/49325615-ff287900-f588-11e8-93ee-00020803e639.png">
