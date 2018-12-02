@@ -30,10 +30,6 @@ public class BlogService {
 		return setting;
 	}
 
-	public String findGithubBlogTitle() {
-		return repository.findTitleById(GITHUB_BLOG_ID);
-	}
-
 	public void updateBlogName(String newTitle) {
 		BlogSetting setting = new BlogSetting();
 

@@ -29,14 +29,15 @@ public class AdminController {
 
 	@PostMapping("/login")
 	public String login(String userId, String password, HttpSession session) {
-		log.info("decrypted id :{}", adminId);
-		log.info("decrypted pwd :{}", adminPassword);
-
-		if (userId.equals(adminId) && password.equals(adminPassword)) {
+		if (isAdminUser(userId, password)) {
 			session.setAttribute("admin", new Admin("관리자"));
 			return "redirect:/post/form";
 		}
 		return "redirect:/";
+	}
+
+	private boolean isAdminUser(String userId, String password) {
+		return userId.equals(adminId) && password.equals(adminPassword);
 	}
 
 }
