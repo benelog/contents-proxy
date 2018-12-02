@@ -29,8 +29,8 @@ public class AdminController {
 
 	@PostMapping("/login")
 	public String login(String userId, String password, HttpSession session) {
-		log.info("encrypted id :{}", adminId);
-		log.info("encrypted pwd :{}", adminPassword);
+		log.info("decrypted id :{}", adminId);
+		log.info("decrypted pwd :{}", adminPassword);
 
 		if (userId.equals(adminId) && password.equals(adminPassword)) {
 			session.setAttribute("admin", new Admin("관리자"));
