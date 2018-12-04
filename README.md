@@ -59,31 +59,24 @@ IntelliJ를 기준으로 아래와 같이 설정한다.
 
 ## 결과
 #### 메인
-post 목록이 나오며, 각 post 별로 제목과 조회수를 확인할 수 있습니다.
+post 목록이 나온다. 각 post 별로 제목, 조회수, 생성 날짜를 확인할 수 있다.
 
-##### 링크
-- 블로그 설정: 블로그 설정 페이지로 전환
-- 새 포스트: post 추가 페이지로 전환
-
-<img width="193" alt="2018-11-30 2 26 27" src="https://user-images.githubusercontent.com/19392136/49270288-f31ab980-f4ab-11e8-9cdb-3cb4142ea77c.png">
+<img width="559" alt="2018-12-04 9 01 41" src="https://user-images.githubusercontent.com/19392136/49441043-b67ef300-f808-11e8-9f6a-8ce6c4c809d5.png">
 
 #### post 추가
-post 를 추가합니다. title, github url 을 입력합니다. 
+post 를 추가한다. title, github url 을 입력한다. (단, github url 은 master branch 만 입력한다.)
 
-단, github url 은 master branch 에 한정합니다.
+<img width="559" alt="2018-12-04 9 01 23" src="https://user-images.githubusercontent.com/19392136/49441061-be3e9780-f808-11e8-91aa-897b19f9f9dd.png">
 
 #### post 상세
-post 제목, 조회수, 내용(github 으로부터 가져온 내용) 을 확인할 수 있습니다.
+post 제목, 조회수, 내용(github 에서 수집한 내용), 생성날짜를 확인할 수 있다.
 
-##### 링크
-- 메인화면: 메인화면으로 전환
-
-<img width="800" alt="2018-11-30 2 24 24" src="https://user-images.githubusercontent.com/19392136/49270155-ab942d80-f4ab-11e8-84d2-0b18e4fac9c5.png">
+<img width="559" alt="2018-12-04 8 59 10" src="https://user-images.githubusercontent.com/19392136/49441069-c26ab500-f808-11e8-9482-609e36a03de7.png">
 
 #### 블로그 설정
-블로그의 제목을 수정합니다.
+블로그의 제목을 수정한다.
 
+<img width="559" alt="2018-12-04 9 00 36" src="https://user-images.githubusercontent.com/19392136/49441066-c0085b00-f808-11e8-9c87-401e6d5a18ad.png">
 
-
-### Sequence Diagram
+#### Sequence Diagram
 <img width="758" alt="2018-12-01 4 36 44" src="https://user-images.githubusercontent.com/19392136/49325615-ff287900-f588-11e8-93ee-00020803e639.png">
