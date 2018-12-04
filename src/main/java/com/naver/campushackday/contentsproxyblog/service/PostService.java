@@ -2,6 +2,7 @@ package com.naver.campushackday.contentsproxyblog.service;
 
 import com.naver.campushackday.contentsproxyblog.component.GithubMarkdownLoader;
 import com.naver.campushackday.contentsproxyblog.component.MarkdownParser;
+import com.naver.campushackday.contentsproxyblog.dto.PostDto;
 import com.naver.campushackday.contentsproxyblog.entity.ImageType;
 import com.naver.campushackday.contentsproxyblog.entity.Post;
 import com.naver.campushackday.contentsproxyblog.exception.NoSuchPostException;
@@ -10,7 +11,9 @@ import com.naver.campushackday.contentsproxyblog.util.StringParser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostService {
@@ -34,22 +37,25 @@ public class PostService {
 	}
 
 	@Transactional
-	public Post findPost(long id) throws Exception {
+	public PostDto findPost(long id) throws Exception {
 		Post post = findOne(id);
-
 		updateViewCount(post);
 		post.setContent(getContentByUrl(post.getUrl()));
-		return post;
+		PostDto postDto = new PostDto(post);
+		return postDto;
 	}
 
-	public List<Post> findSortedPostsByViewCount() {
-		List<Post> posts = postRepository.findAll();
-
-		posts.sort((post1, post2) -> post2.getViewCount().compareTo(post1.getViewCount()));
-		return posts;
+	public List<PostDto> findSortedPostsByViewCount() {
+		return postRepository.findAll()
+				.stream()
+				.map(PostDto::new)
+				.sorted((post1, post2) -> post2.getViewCount().compareTo(post1.getViewCount()))
+				.collect(Collectors.toList());
 	}
 
+	@Transactional
 	public long savePost(Post post) {
+		post.setCreatedDate(LocalDateTime.now());
 		return postRepository.save(post).getId();
 	}
 

@@ -1,5 +1,6 @@
 package com.naver.campushackday.contentsproxyblog.presentation;
 
+import com.naver.campushackday.contentsproxyblog.dto.PostDto;
 import com.naver.campushackday.contentsproxyblog.entity.Post;
 import com.naver.campushackday.contentsproxyblog.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class PostController {
 
 	@GetMapping("/post/{postId}")
 	public ModelAndView post(@PathVariable long postId) throws Exception {
-		Post post = postService.findPost(postId);
+		PostDto post = postService.findPost(postId);
 
 		return new ModelAndView("post")
 				.addObject("post", post);

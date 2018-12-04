@@ -10,7 +10,7 @@
 <a href="/">메인화면</a>
 
 <form action="/blog/setting" method="post" name="post">
-	블로그 새 이름: <input type="text" name="newTitle" value="title" required>
+	블로그 새 이름: <input type="text" name="newTitle" value="{{setting.title}}" required>
 	<input type="hidden" name="_method" value="put" />
 	<input type="submit">
 </form>
