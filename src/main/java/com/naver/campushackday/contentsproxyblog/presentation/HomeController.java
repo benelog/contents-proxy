@@ -1,5 +1,6 @@
 package com.naver.campushackday.contentsproxyblog.presentation;
 
+import com.naver.campushackday.contentsproxyblog.dto.PostDto;
 import com.naver.campushackday.contentsproxyblog.entity.Post;
 import com.naver.campushackday.contentsproxyblog.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class HomeController {
 	@GetMapping("/")
 	public ModelAndView home() {
 		BlogSetting setting = blogService.findSetting();
-		List<Post> posts = postService.findSortedPostsByViewCount();
+		List<PostDto> posts = postService.findSortedPostsByViewCount();
 		return new ModelAndView("index")
 				.addObject("setting", setting)
 				.addObject("posts", posts);
