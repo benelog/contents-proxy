@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,15 +42,14 @@ public class PostService {
 		Post post = findOne(id);
 		updateViewCount(post);
 		post.setContent(getContentByUrl(post.getUrl()));
-		PostDto postDto = new PostDto(post);
-		return postDto;
+		return new PostDto(post);
 	}
 
 	public List<PostDto> findSortedPostsByViewCount() {
 		return postRepository.findAll()
 				.stream()
 				.map(PostDto::new)
-				.sorted((post1, post2) -> post2.getViewCount().compareTo(post1.getViewCount()))
+				.sorted(Comparator.comparing(PostDto::getViewCount).reversed())
 				.collect(Collectors.toList());
 	}
 
